@@ -104,7 +104,7 @@ st.session_state.num_inputs
 newPatientHBA1c = {}
 for i in range(num):
     key = st.number_input(f"Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-    value = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=4, max_value=20)
+    value = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
     if key:  # Only add if key is not empty
         newPatientHBA1c[key] = value
 
