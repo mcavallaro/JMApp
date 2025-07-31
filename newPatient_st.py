@@ -3,7 +3,6 @@
 # conda activate streamlit
 
 import numpy as np
-import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import xgboost as xgb
@@ -63,7 +62,8 @@ def estimate_random_effects(patientCharacteristics, HbA1c):
     patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1]
     
     # Add intercept term to X    
-    Z_new = sm.add_constant(Z_new)
+    I = np.ones(len(Z_new))
+    Z_new = np.vstack([I, Z_new]).transpose()
 
     sortedFixedEffects = {key: fixedEffects[key] for key in patientCharacteristics_.keys() if key in fixedEffects.keys()}
     
