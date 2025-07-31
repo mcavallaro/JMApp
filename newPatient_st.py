@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding: utf-8
 
 import numpy as np
@@ -102,7 +101,7 @@ newPatientCharact = {
 # Initialize session state
 if "num_inputs" not in st.session_state:
     st.session_state.num_inputs = 3
-num = st.slider("How HbA1c measurements?", 1, 10, st.session_state.num_inputs)
+num = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
 st.session_state.num_inputs 
 newPatientHBA1c = {}
 for i in range(num):
