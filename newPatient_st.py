@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import xgboost as xgb
 import pickle
 import streamlit as st
-import utils as ut
+from utils import summarise, getRisk
 import paramters as pr
 
 st.title("T2D Survival")
@@ -110,11 +110,11 @@ for i in range(num):
     if key:  # Only add if key is not empty
         newPatientHBA1c[key] = value
 
-blup = ut.summarise(newPatientCharact, newPatientHBA1c) 
+blup = summarise(newPatientCharact, newPatientHBA1c) 
 Xnew = {key: blup[key] for key in XColumns}
 
 newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
-risk = ut.getRisk(newPatientSummary)
+risk = getRisk(newPatientSummary)
 st.write("Risk: ", risk)
 
 rate = pr.baseline.hazard * risk    
