@@ -21,5 +21,5 @@ G = np.array([[1.390534, -0.043312501402308475],[-0.043312501402308475, 0.014563
 # Residual variance
 sigma2 = 0.8382328677496468
 
-Baseline = np.load("baseline.npz")
+baseline = np.load("baseline.npz")
 

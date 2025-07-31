@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 from utils import summarise, getRisk
-from parameters import Baseline
+from parameters import baseline
 
 st.title("T2D Survival")
 
@@ -115,12 +115,12 @@ newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
 risk = getRisk(newPatientSummary)
 st.write("Risk: ", risk)
 
-rate = pr.baseline.hazard * risk    
+rate = baseline.hazard * risk    
 prob = 100 * (1 - np.exp(-np.cumsum(rate)))
     
 fig, ax = plt.subplots()
 
-ax.plot(pr.baseline.time, prob, lw=2)
+ax.plot(baseline.time, prob, lw=2)
 ax.set_ylabel('Patient probability of death [\%]')
 ax.set_xlabel('Years from last HBa1c measurement')
     
