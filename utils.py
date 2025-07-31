@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import xgboost as xgb
-from parameters import fixedEffects, G, sigma2, Baseline
+from parameters import fixedEffects, G, sigma2
 
 def summarise(patientCharacteristics, HbA1c):
     """    

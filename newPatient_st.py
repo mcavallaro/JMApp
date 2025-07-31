@@ -6,7 +6,7 @@ import xgboost as xgb
 import pickle
 import streamlit as st
 from utils import summarise, getRisk
-import paramters as pr
+from parameters import Baseline
 
 st.title("T2D Survival")
 
