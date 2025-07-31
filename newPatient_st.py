@@ -14,9 +14,9 @@ if Sex == "Male":
 elif Sex == "Female":
     male = 0
 
-aged = st.number_input("Age:", value=65., step=0.1)
-imd = st.number_input("IMD:", value=6, step=1)
-indexdate_n = st.number_input("indexdate_n:", value=2, step=1)
+aged = st.number_input("Age at T2D diagnosis:", value=65., step=0.1)
+imd = st.number_input("IMD (deciles of index of multiple deprivation):", value=6, step=1)
+indexdate_n = st.number_input("indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1)
 
 Ethn = st.selectbox("Patient Ethnicity:",
 	["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
@@ -103,8 +103,8 @@ num = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inpu
 st.session_state.num_inputs 
 newPatientHBA1c = {}
 for i in range(num):
-    key = st.number_input(f"Time of observation (years from Diagnosis) {i+1}:", value=float(i + 1), step=0.1)
-    value = st.number_input(f"HbA1c value {i+1}:", value=float(4 + i), step=0.1)
+    key = st.number_input(f"Time of observation (years from diagnosis) {i+1}:",   step=0.1, value=float(i))
+    value = st.number_input(f"HbA1c value {i+1}:", step=0.1, min_value=4, max_value=20)
     if key:  # Only add if key is not empty
         newPatientHBA1c[key] = value
 
@@ -123,7 +123,7 @@ fig, ax = plt.subplots()
 ax.plot(baseline['time'], prob, lw=2)
 ax.set_ylabel('Patient probability of death [\%]')
 ax.set_xlabel('Years from last HBa1c measurement')
-    
+ax.set_ylim([0,100])
 ax.grid(True)
 
 st.pyplot(fig)
