@@ -103,7 +103,7 @@ num = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inpu
 st.session_state.num_inputs 
 newPatientHBA1c = {}
 
-value = st.number_input(f"HbA1c value at diagnosis {1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+value = st.number_input(f"HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
 newPatientHBA1c[0] = value
 
 for i in range(1, num):
