@@ -115,7 +115,7 @@ newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
 risk = getRisk(newPatientSummary)
 st.write("Risk: ", risk)
 
-rate = baseline.hazard * risk    
+rate = baseline['hazard'] * risk    
 prob = 100 * (1 - np.exp(-np.cumsum(rate)))
     
 fig, ax = plt.subplots()
