@@ -2,8 +2,6 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import xgboost as xgb
-import pickle
 import streamlit as st
 from utils import summarise, getRisk
 from parameters import Baseline
