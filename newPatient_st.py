@@ -105,7 +105,7 @@ def estimate_random_effects(patientCharacteristics, HbA1c):
 
 
 def getRisk(X):
-    with open('/var/autofs/home/home/mc811/CPRD/trained_booster_.pkl', 'rb') as f:
+    with open('/mount/src/jmapp/trained_booster_.pkl', 'rb') as f:
         bst = pickle.load(f)
     d = xgb.DMatrix(X)
     predicted_risk = bst.predict(d)
