@@ -102,7 +102,11 @@ if "num_inputs" not in st.session_state:
 num = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
 st.session_state.num_inputs 
 newPatientHBA1c = {}
-for i in range(num):
+
+value = st.number_input(f"HbA1c value at diagnosis {1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+newPatientHBA1c[0] = value
+
+for i in range(1, num):
     key = st.number_input(f"Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
     value = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
     if key:  # Only add if key is not empty
