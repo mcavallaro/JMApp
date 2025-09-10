@@ -8,21 +8,21 @@ from parameters import baseline
 
 st.title("T2D Survival")
 col1, col2 = st.columns(2)
-col1.subheader("Patient 1")
-col2.subheader("Patient 2")
+col1.subheader("Patient A")
+col2.subheader("Patient B")
 
 with col1:
-    Sex = st.selectbox("Patient Sex:", ["Male", "Female"])
+    Sex = st.selectbox("A) Patient Sex:", ["Male", "Female"])
     if Sex == "Male":
         male = 1
     elif Sex == "Female":
         male = 0
 
-    aged = st.number_input("Age at T2D diagnosis:", value=65., step=0.1)
-    imd = st.number_input("IMD (deciles of index of multiple deprivation):", value=6, step=1)
-    indexdate_n = st.number_input("indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    aged = st.number_input("A) Age at T2D diagnosis:", value=65., step=0.1)
+    imd = st.number_input("A) MD (deciles of index of multiple deprivation):", value=6, step=1)
+    indexdate_n = st.number_input("A indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
 
-    Ethn = st.selectbox("Patient Ethnicity:",
+    Ethn = st.selectbox("A) Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
     if Ethn == "White":
         White = 1
@@ -103,16 +103,16 @@ with col1:
     # Initialize session state
     if "num_inputs" not in st.session_state:
         st.session_state.num_inputs = 3
-    num = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
+    num = st.slider("A) How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
     st.session_state.num_inputs 
     newPatientHBA1c = {}
 
-    value = st.number_input(f"HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+    value = st.number_input(f"A) HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
     newPatientHBA1c[0] = value
 
     for i in range(1, num):
-        key = st.number_input(f"Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+        key = st.number_input(f"A) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
+        value = st.number_input(f"A) HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
         if key:  # Only add if key is not empty
             newPatientHBA1c[key] = value
 
@@ -121,21 +121,21 @@ with col1:
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     risk1 = getRisk(newPatientSummary)
-    st.write("Risk 1: ", risk1)
+    st.write("A) Risk: ", risk1)
 
 
 with col2:
-    Sex2 = st.selectbox("Patient Sex:", ["Male", "Female"])
+    Sex2 = st.selectbox("B) Patient Sex:", ["Male", "Female"])
     if Sex2 == "Male":
         male = 1
     elif Sex2 == "Female":
         male = 0
 
-    aged2 = st.number_input("Age at T2D diagnosis:", value=65., step=0.1)
-    imd2 = st.number_input("IMD (deciles of index of multiple deprivation):", value=6, step=1)
-    indexdate_n2 = st.number_input("indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    aged2 = st.number_input("B) Age at T2D diagnosis:", value=65., step=0.1)
+    imd2 = st.number_input("B) IMD (deciles of index of multiple deprivation):", value=6, step=1)
+    indexdate_n2 = st.number_input("B) indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
 
-    Ethn2 = st.selectbox("Patient Ethnicity:",
+    Ethn2 = st.selectbox("B) Patient Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
     if Ethn2 == "White":
         White = 1
@@ -212,16 +212,16 @@ with col2:
     # Initialize session state
     if "num_inputs" not in st.session_state:
         st.session_state.num_inputs = 3
-    num2 = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
+    num2 = st.slider("B) How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
     st.session_state.num_inputs 
     newPatientHBA1c2 = {}
 
-    value2 = st.number_input(f"HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+    value2 = st.number_input(f"B) HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
     newPatientHBA1c2[0] = value
 
     for i in range(1, num2):
-        key2 = st.number_input(f"Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value2 = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+        key2 = st.number_input(f"B) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
+        value2 = st.number_input(f"B) HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c[key2] = value2
 
@@ -230,7 +230,7 @@ with col2:
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     risk2 = getRisk(newPatientSummary)
-    st.write("Risk 2: ", risk2)
+    st.write("B) Risk: ", risk2)
 
 
 
