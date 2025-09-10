@@ -127,9 +127,9 @@ with col1:
 with col2:
     Sex2 = st.selectbox("B) Patient Sex:", ["Male", "Female"])
     if Sex2 == "Male":
-        male = 1
+        male2 = 1
     elif Sex2 == "Female":
-        male = 0
+        male2 = 0
 
     aged2 = st.number_input("B) Age at T2D diagnosis:", value=65., step=0.1)
     imd2 = st.number_input("B) IMD (deciles of index of multiple deprivation):", value=6, step=1)
@@ -138,74 +138,74 @@ with col2:
     Ethn2 = st.selectbox("B) Patient Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
     if Ethn2 == "White":
-        White = 1
-        Black  = 0
-        South_East_Asian = 0
-        Other_Asian = 0
-        Mixed = 0
-        Chinese = 0
-        Other = 0    
+        White2 = 1
+        Black2  = 0
+        South_East_Asian2 = 0
+        Other_Asian2 = 0
+        Mixed2 = 0
+        Chinese2 = 0
+        Other2 = 0    
     elif Ethn2 == "Black":
-        White = 0
-        Black = 1
-        South_East_Asian = 0
-        Other_Asian = 0
-        Mixed = 0
-        Chinese = 0
-        Other = 0
+        White2 = 0
+        Black2 = 1
+        South_East_Asian2 = 0
+        Other_Asian2 = 0
+        Mixed2 = 0
+        Chinese2 = 0
+        Other2 = 0
     elif Ethn2 == "South_East_Asian":
-        White = 0
-        Black = 0
-        South_East_Asian = 1
-        Other_Asian = 0
-        Mixed = 0
-        Chinese = 0
-        Other = 0
+        White2 = 0
+        Black2 = 0
+        South_East_Asian2 = 1
+        Other_Asian2 = 0
+        Mixed2 = 0
+        Chinese2 = 0
+        Other2 = 0
     elif Ethn2 == "Other_Asian":
-        White = 0
-        Black = 0
-        South_East_Asian = 0
-        Other_Asian = 1
-        Mixed = 0
-        Chinese = 0
-        Other = 0
+        White2 = 0
+        Black2 = 0
+        South_East_Asian2 = 0
+        Other_Asian2 = 1
+        Mixed2 = 0
+        Chinese2 = 0
+        Other2 = 0
     elif Ethn2 == "Mixed":
-        White = 0
-        Black = 0
-        South_East_Asian = 0
-        Other_Asian = 0
-        Mixed = 1
-        Chinese = 0
-        Other = 0
+        White2 = 0
+        Black2 = 0
+        South_East_Asian2 = 0
+        Other_Asian2 = 0
+        Mixed2 = 1
+        Chinese2 = 0
+        Other2 = 0
     elif Ethn2 == "Chinese":
-        White = 0
-        Black = 0
-        South_East_Asian = 0
-        Other_Asian = 0
-        Mixed = 1
-        Chinese = 0
-        Other = 0
+        White2 = 0
+        Black2 = 0
+        South_East_Asian2 = 0
+        Other_Asian2 = 0
+        Mixed2 = 1
+        Chinese2 = 0
+        Other2 = 0
     elif Ethn2 == "Other":
-        White = 1
-        Black  = 0
-        South_East_Asian = 0
-        Other_Asian = 0
-        Mixed = 0
-        Chinese = 0
-        Other = 0
+        White2 = 1
+        Black2  = 0
+        South_East_Asian2 = 0
+        Other_Asian2 = 0
+        Mixed2 = 0
+        Chinese2 = 0
+        Other2 = 0
         
     newPatientCharact2 = {
-            "aged": aged,
-            'indexdate_n': indexdate_n,
-            'imd': imd,
-            'White': White,
-            'Black': Black,
-            'South_East_Asian': South_East_Asian,
-            'Other_Asian': Other_Asian,
-            'Mixed': Mixed,
-            'Chinese': Chinese,
-            'Other': Other,
-            'male': male, #,        'tyears': 1.1 #time elapsed from T2D diagnosis will be taken by newPatientHBA1c
+            "aged": aged2,
+            'indexdate_n': indexdate_n2,
+            'imd': imd2,
+            'White': White2,
+            'Black': Black2,
+            'South_East_Asian': South_East_Asian2,
+            'Other_Asian': Other_Asian2,
+            'Mixed': Mixed2,
+            'Chinese': Chinese2,
+            'Other': Other2,
+            'male': male2, #,        'tyears': 1.1 #time elapsed from T2D diagnosis will be taken by newPatientHBA1c
         }
         
 
@@ -228,8 +228,8 @@ with col2:
     blup2 = summarise(newPatientCharact2, newPatientHBA1c2) 
     Xnew2 = {key: blup2[key] for key in XColumns}
 
-    newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
-    risk2 = getRisk(newPatientSummary)
+    newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
+    risk2 = getRisk(newPatientSummary2)
     st.write("B) Risk: ", risk2)
 
 
