@@ -194,7 +194,7 @@ with col2:
         Chinese = 0
         Other = 0
         
-    newPatientCharact = {
+    newPatientCharact2 = {
             "aged": aged,
             'indexdate_n': indexdate_n,
             'imd': imd,
@@ -217,7 +217,7 @@ with col2:
     newPatientHBA1c2 = {}
 
     value2 = st.number_input(f"B) HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
-    newPatientHBA1c2[0] = value
+    newPatientHBA1c2[0] = value2
 
     for i in range(1, num2):
         key2 = st.number_input(f"B) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
@@ -225,7 +225,7 @@ with col2:
         if key2:  # Only add if key is not empty
             newPatientHBA1c[key2] = value2
 
-    blup2 = summarise(newPatientCharact, newPatientHBA1c) 
+    blup2 = summarise(newPatientCharact2, newPatientHBA1c2) 
     Xnew2 = {key: blup2[key] for key in XColumns}
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
