@@ -19,8 +19,8 @@ with col1:
         male = 0
 
     aged = st.number_input("A) Age at T2D diagnosis:", value=65., step=0.1)
-    imd = st.number_input("A) MD (deciles of index of multiple deprivation):", value=6, step=1)
-    indexdate_n = st.number_input("A indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    imd = st.number_input("A) IMD (deciles of index of multiple deprivation):", value=6, step=1)
+    indexdate_n = st.number_input("A) indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
 
     Ethn = st.selectbox("A) Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
