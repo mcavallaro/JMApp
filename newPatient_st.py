@@ -7,9 +7,9 @@ from utils import summarise, getRisk
 from parameters import baseline
 
 st.title("T2D Survival")
-col1, col2 = st.beta_columns(2)
-col1.title("Patient 2")
-col2.title("Patient 2")
+col1, col2 = st.columns(2)
+col1.subheader("Patient 1")
+col2.subheader("Patient 2")
 
 
 Sex = col1.selectbox("Patient Sex:", ["Male", "Female"])
