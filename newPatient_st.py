@@ -125,19 +125,19 @@ with col1:
 
 
 with col2:
-    Sex = st.selectbox("Patient Sex:", ["Male", "Female"])
-    if Sex == "Male":
+    Sex2 = st.selectbox("Patient Sex:", ["Male", "Female"])
+    if Sex2 == "Male":
         male = 1
-    elif Sex == "Female":
+    elif Sex2 == "Female":
         male = 0
 
-    aged = st.number_input("Age at T2D diagnosis:", value=65., step=0.1)
-    imd = st.number_input("IMD (deciles of index of multiple deprivation):", value=6, step=1)
-    indexdate_n = st.number_input("indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    aged2 = st.number_input("Age at T2D diagnosis:", value=65., step=0.1)
+    imd2 = st.number_input("IMD (deciles of index of multiple deprivation):", value=6, step=1)
+    indexdate_n2 = st.number_input("indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
 
-    Ethn = st.selectbox("Patient Ethnicity:",
+    Ethn2 = st.selectbox("Patient Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
-    if Ethn == "White":
+    if Ethn2 == "White":
         White = 1
         Black  = 0
         South_East_Asian = 0
@@ -145,7 +145,7 @@ with col2:
         Mixed = 0
         Chinese = 0
         Other = 0    
-    elif Ethn == "Black":
+    elif Ethn2 == "Black":
         White = 0
         Black = 1
         South_East_Asian = 0
@@ -153,7 +153,7 @@ with col2:
         Mixed = 0
         Chinese = 0
         Other = 0
-    elif Ethn == "South_East_Asian":
+    elif Ethn2 == "South_East_Asian":
         White = 0
         Black = 0
         South_East_Asian = 1
@@ -161,7 +161,7 @@ with col2:
         Mixed = 0
         Chinese = 0
         Other = 0
-    elif Ethn == "Other_Asian":
+    elif Ethn2 == "Other_Asian":
         White = 0
         Black = 0
         South_East_Asian = 0
@@ -169,7 +169,7 @@ with col2:
         Mixed = 0
         Chinese = 0
         Other = 0
-    elif Ethn == "Mixed":
+    elif Ethn2 == "Mixed":
         White = 0
         Black = 0
         South_East_Asian = 0
@@ -177,7 +177,7 @@ with col2:
         Mixed = 1
         Chinese = 0
         Other = 0
-    elif Ethn == "Chinese":
+    elif Ethn2 == "Chinese":
         White = 0
         Black = 0
         South_East_Asian = 0
@@ -185,7 +185,7 @@ with col2:
         Mixed = 1
         Chinese = 0
         Other = 0
-    elif Ethn == "Other":
+    elif Ethn2 == "Other":
         White = 1
         Black  = 0
         South_East_Asian = 0
@@ -194,10 +194,6 @@ with col2:
         Chinese = 0
         Other = 0
         
-    XColumns = ['residuals_mean', 'coeff', 'indexdate_n', 'aged', 'imd', 'hba1c_value',
-           'White', 'Black', 'South_East_Asian', 'Other_Asian', 'Mixed', 'Chinese',
-           'Other', 'male', 'tyears', 'prediction']
-
     newPatientCharact = {
             "aged": aged,
             'indexdate_n': indexdate_n,
@@ -216,21 +212,21 @@ with col2:
     # Initialize session state
     if "num_inputs" not in st.session_state:
         st.session_state.num_inputs = 3
-    num = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
+    num2 = st.slider("How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
     st.session_state.num_inputs 
-    newPatientHBA1c = {}
+    newPatientHBA1c2 = {}
 
-    value = st.number_input(f"HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
-    newPatientHBA1c[0] = value
+    value2 = st.number_input(f"HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+    newPatientHBA1c2[0] = value
 
-    for i in range(1, num):
-        key = st.number_input(f"Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
-        if key:  # Only add if key is not empty
-            newPatientHBA1c[key] = value
+    for i in range(1, num2):
+        key2 = st.number_input(f"Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
+        value2 = st.number_input(f"HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+        if key2:  # Only add if key is not empty
+            newPatientHBA1c[key2] = value2
 
-    blup = summarise(newPatientCharact, newPatientHBA1c) 
-    Xnew = {key: blup[key] for key in XColumns}
+    blup2 = summarise(newPatientCharact, newPatientHBA1c) 
+    Xnew2 = {key: blup2[key] for key in XColumns}
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     risk2 = getRisk(newPatientSummary)
