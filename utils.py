@@ -24,7 +24,7 @@ def summarise(patientCharacteristics, HbA1c):
     patientCharacteristics_ =  patientCharacteristics.copy()    
     patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1]
     
-    # Add intercept term to X    
+    # Add intercept term to X
     I = np.ones(len(Z_new))
     Z_new = np.vstack([I, Z_new]).transpose()
 

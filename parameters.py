@@ -3,7 +3,7 @@
 import numpy as np
 
 fixedEffects = {
-    'Aged': 0.004745540728017758,
+    'aged': 0.004745540728017758,
     'White': 0.08638973990196011,
     'Black': 0.22958769339743168,
     'South_East_Asian': 0.42478216574391114,
