@@ -241,8 +241,8 @@ rate2 = baseline['hazard'] * risk2
 prob2 = 100 * (1 - np.exp(-np.cumsum(rate2)))
 
 fig, ax = plt.subplots()
-ax.plot(baseline['time'], prob1, lw=2, label='Patient 1')
-ax.plot(baseline['time'], prob2, lw=2, label='Patient 2')
+ax.plot(baseline['time'], prob1, lw=2, label='Patient A')
+ax.plot(baseline['time'], prob2, lw=2, label='Patient B')
 ax.set_ylabel('Patient probability of death [\%]')
 ax.set_xlabel('Years from last HBa1c measurement')
 ax.set_ylim([0,100])
