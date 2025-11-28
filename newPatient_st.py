@@ -231,8 +231,8 @@ with col2:
     Xnew2 = {key: blup2[key] for key in XColumns}
 
     newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
-    x2 = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
-    risk2 = getRisk(newPatientSummary2)
+    x2 = pd.DataFrame(newPatientSummary2, columns=Xnew2.keys())
+    risk2 = getRisk(x2)
     st.write("B) Risk: ", risk2)
 
 
