@@ -117,11 +117,11 @@ with col1:
             newPatientHBA1c[key] = value
 
     blup = summarise(newPatientCharact, newPatientHBA1c) 
-    Xnew = {key: blup[key] for key in XColumns}
+    Xnew = {key: float(blup[key]) for key in XColumns}
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
-    print(newPatientSummary)
-    print(Xnew)
+    st.write(newPatientSummary)
+    st.write(Xnew)
     risk1 = getRisk(Xnew)
     st.write("A) Risk: ", risk1)
 
