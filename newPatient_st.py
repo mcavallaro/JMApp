@@ -119,7 +119,7 @@ with col1:
     blup = summarise(newPatientCharact, newPatientHBA1c) 
     Xnew = {key: float(blup[key]) for key in XColumns}
 
-    newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
+    newPatientSummary = np.array(list(Xnew.values()), dtype=float)#.reshape(1, -1)
     #st.write(Xnew)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     st.write(x)
