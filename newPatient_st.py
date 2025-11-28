@@ -120,7 +120,9 @@ with col1:
     Xnew = {key: blup[key] for key in XColumns}
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
-    risk1 = getRisk(newPatientSummary)
+    print(newPatientSummary)
+    print(Xnew)
+    risk1 = getRisk(Xnew)
     st.write("A) Risk: ", risk1)
 
 
