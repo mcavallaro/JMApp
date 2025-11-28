@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+import pandas as pd
 from utils import summarise, getRisk
 from parameters import baseline
 
@@ -119,8 +120,9 @@ with col1:
     blup = summarise(newPatientCharact, newPatientHBA1c) 
     Xnew = {key: float(blup[key]) for key in XColumns}
 
-    newPatientSummary = np.array(list(Xnew.values()), dtype=float)#.reshape(1, -1)
-    #st.write(Xnew)
+    newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
+    st.write(newPatientSummary)
+    st.write(Xnew.keys())
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     st.write(x)
     risk1 = getRisk(x)
