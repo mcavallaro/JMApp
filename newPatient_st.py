@@ -121,8 +121,8 @@ with col1:
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     st.write(newPatientSummary)
-    st.write(pd.DataFrame(Xnew))
-    risk1 = getRisk(pd.DataFrame(Xnew))
+    st.write(pd.DataFrame(Xnew, index=[0]))
+    risk1 = getRisk(pd.DataFrame(Xnew), index=[0])
     st.write("A) Risk: ", risk1)
 
 
