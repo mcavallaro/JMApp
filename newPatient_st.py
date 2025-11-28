@@ -117,12 +117,12 @@ with col1:
             newPatientHBA1c[key] = value
 
     blup = summarise(newPatientCharact, newPatientHBA1c) 
-    Xnew = {key: float(blup[key]) for key in XColumns}
+    Xnew = {key: [float(blup[key])] for key in XColumns}
 
-    newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
-    st.write(newPatientSummary)
-    st.write(pd.DataFrame(Xnew, index=[0]))
-    risk1 = getRisk(pd.DataFrame(Xnew), index=[0])
+    #newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
+    st.write(Xnew)
+    #st.write(pd.DataFrame(Xnew))
+    risk1 = getRisk(pd.DataFrame(Xnew))
     st.write("A) Risk: ", risk1)
 
 
