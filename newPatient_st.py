@@ -121,10 +121,7 @@ with col1:
     Xnew = {key: float(blup[key]) for key in XColumns}
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
-    st.write(newPatientSummary)
-    st.write(Xnew.keys())
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
-    st.write(x)
     risk1 = getRisk(x)
     st.write("A) Risk: ", risk1)
 
@@ -234,9 +231,9 @@ with col2:
     Xnew2 = {key: blup2[key] for key in XColumns}
 
     newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
+    x2 = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     risk2 = getRisk(newPatientSummary2)
     st.write("B) Risk: ", risk2)
-
 
 
 rate1 = baseline['hazard'] * risk1
