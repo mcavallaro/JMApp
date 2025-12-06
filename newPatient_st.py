@@ -250,8 +250,8 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 #
-ax.plot(time_from_Dx1, value1, linestyle='--', marker="o", color='tab:blue')
-ax.plot(time_from_Dx2, value2, linestyle='--', marker="o", color='tab:orange')
+ax.plot(time_from_Dx1 + newPatientCharact['aged'], value1, linestyle='--', marker="o", color='tab:blue')
+ax.plot(time_from_Dx2 + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color='tab:orange')
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color='tab:blue')
 ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color='tab:orange')
