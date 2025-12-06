@@ -243,12 +243,34 @@ rate2 = baseline['hazard'] * risk2
 prob2 = 100 * (1 - np.exp(-np.cumsum(rate2)))
 
 fig, ax = plt.subplots()
-ax.plot(baseline['time'], prob1, lw=2, label='Patient A')
-ax.plot(baseline['time'], prob2, lw=2, label='Patient B')
-ax.set_ylabel('Patient probability of death [\%]')
-ax.set_xlabel('Years from last HBa1c measurement')
+ax_right = ax.twinx()
+time_from_Dx1 = list(newPatientHBA1c.keys())
+value1 = list(newPatientHBA1c.values())
+time_from_Dx2 = list(newPatientHBA1c2.keys())
+value2 = list(newPatientHBA1c2.values())
+
+#
+ax.plot(time_from_Dx1, value1, linestyle='--', marker="o", color='tab:blue')
+ax.plot(time_from_Dx2, value2, linestyle='--', marker="o", color='tab:orange')
+
+ax_right.plot(baseline['time'] + time_from_Dx1[-1], prob1, lw=2, color='tab:blue', label='Patient A')
+ax_right.plot(baseline['time'] + time_from_Dx2[-1], prob2, lw=2, color='tab:orange', label='Patient B')
+ax_right.set_ylabel('Patient probability of death [\%]')
+ax.set_xlabel('Years from T2D diagnosis')
+ax.set_ylabel('HbA1c value')
 ax.set_ylim([0,100])
 ax.legend()
 ax.grid(True)
 st.pyplot(fig)
+
+fig, ax = plt.subplots()
+ax.plot(baseline['time'], prob1, lw=2, color='tab:blue', label='Patient A')
+ax.plot(baseline['time'], prob2, lw=2, color='tab:orange', label='Patient B')
+ax.set_ylabel('Patient probability of death [\%]')
+ax.set_xlabel('Years from last HbA1c measurement')
+ax.set_ylim([0,100])
+ax.legend()
+ax.grid(True)
+st.pyplot(fig)   
+   
    
