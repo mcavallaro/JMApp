@@ -62,7 +62,8 @@ def summarise(patientCharacteristics, HbA1c):
 
 
 def getRisk(X):
-    with open('/mount/src/jmapp/trained_booster_3.pkl', 'rb') as f:
+    with open('trained_booster_3.pkl', 'rb') as f:
+#    with open('/mount/src/jmapp/trained_booster_3.pkl', 'rb') as f:
         bst = pickle.load(f)
     d = xgb.DMatrix(X)
     predicted_risk = bst.predict(d)
