@@ -252,14 +252,18 @@ value2 = list(newPatientHBA1c2.values())
 #
 ax.plot(time_from_Dx1, value1, linestyle='--', marker="o", color='tab:blue')
 ax.plot(time_from_Dx2, value2, linestyle='--', marker="o", color='tab:orange')
-
+#
+ax.axvline(time_from_Dx1[-1], '--', alpha=0.5, color='tab:blue')
+ax.axvline(time_from_Dx1[-1], '--', alpha=0.5, color='tab:orange')
+#
 ax_right.plot(baseline['time'] + time_from_Dx1[-1], prob1, lw=2, color='tab:blue', label='Patient A')
 ax_right.plot(baseline['time'] + time_from_Dx2[-1], prob2, lw=2, color='tab:orange', label='Patient B')
 ax_right.set_ylabel('Patient probability of death [\%]')
 ax.set_xlabel('Years from T2D diagnosis')
 ax.set_ylabel('HbA1c value')
-ax.set_ylim([0,100])
-ax.legend()
+ax_right.set_ylim([0,100])
+ax.set_ylim(min(value1+value2), max(value1+value2))
+ax_right.legend()
 ax.grid(True)
 st.pyplot(fig)
 
