@@ -103,17 +103,17 @@ with col1:
 
     # Initialize session state
     if "num_inputs" not in st.session_state:
-        st.session_state.num_inputs = 3
+        st.session_state.num_inputs = 5
     num = st.slider("A) How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
     st.session_state.num_inputs 
     newPatientHBA1c = {}
 
-    value = st.number_input(f"A) HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+    value = st.number_input(f"A) HbA1c value at diagnosis:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
     newPatientHBA1c[0] = value
 
     for i in range(1, num):
         key = st.number_input(f"A) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value = st.number_input(f"A) HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+        value = st.number_input(f"A) HbA1c value {i+1}:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
         if key:  # Only add if key is not empty
             newPatientHBA1c[key] = value
 
@@ -213,17 +213,17 @@ with col2:
 
     # Initialize session state
     if "num_inputs" not in st.session_state:
-        st.session_state.num_inputs = 3
+        st.session_state.num_inputs = 5
     num2 = st.slider("B) How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
     st.session_state.num_inputs 
     newPatientHBA1c2 = {}
 
-    value2 = st.number_input(f"B) HbA1c value at diagnosis:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+    value2 = st.number_input(f"B) HbA1c value at diagnosis:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
     newPatientHBA1c2[0] = value2
 
     for i in range(1, num2):
         key2 = st.number_input(f"B) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value2 = st.number_input(f"B) HbA1c value {i+1}:", step=0.1, value=float(4), min_value=float(4), max_value=float(20))
+        value2 = st.number_input(f"B) HbA1c value {i+1}:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
 
