@@ -6,9 +6,18 @@ import streamlit as st
 import pandas as pd
 from utils import summarise, getRisk
 from parameters import baseline
+from PIL import Image
+
+col1, col2 = st.columns([1, 2])
+
+with col1:
+    im = Image.open('RedBlockUoLlogo.png')
+    st.image(im, caption=None, output_formal="PNG")
+with col2:
+    pass
 
 st.title("T2D Survival")
-st.text("This app takes as input demographics and repeated HbA1c measurements for T2D two patients. It returns the cumulative probability of death over time. In the figure, the two patients' trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
+st.text("This app takes as input demographics and repeated HbA1c measurements for two T2D patients. It returns the cumulative probability of death over time. In the figure, the two patients' trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
 
 col1, col2 = st.columns(2)
 col1.subheader("Patient A")
