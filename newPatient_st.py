@@ -8,7 +8,7 @@ from utils import summarise, getRisk
 from parameters import baseline
 
 st.title("T2D Survival")
-st.text("This app takes as input demographics and repeated HbA1c measurements for two patients. It computes a risk multiplier that, combined with a fitted baseline hazard curve, returns the cumulative probability of death over time. In the figure, the two patients' trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
+st.text("This app takes as input demographics and repeated HbA1c measurements for T2D two patients. It returns the cumulative probability of death over time. In the figure, the two patients' trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
 
 col1, col2 = st.columns(2)
 col1.subheader("Patient A")
