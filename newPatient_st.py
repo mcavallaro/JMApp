@@ -7,6 +7,7 @@ import pandas as pd
 from utils import summarise, getRisk
 from parameters import baseline
 from PIL import Image
+from datetime import date
 
 col1, col2 = st.columns([2, 1])
 
@@ -18,9 +19,9 @@ with col2:
 
 
 
-st.text("This app takes as input demographics and repeated HbA1c measurements for two T2D patients. It returns the cumulative probability of death over time. In the figure, the two patients' trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
+st.text("This app takes as input demographics and repeated HbA1c measurements for two T2D patients. It returns the cumulative probability of death over time. In the figure, the two patients' HbA1c trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, border=True)
 col1.subheader("Patient A")
 col2.subheader("Patient B")
 
@@ -33,7 +34,9 @@ with col1:
 
     aged = st.number_input("A) Age at T2D diagnosis:", value=65., step=0.1)
     imd = st.number_input("A) IMD (deciles of index of multiple deprivation):", value=6, step=1, min_value=1, max_value=10)
-    indexdate_n = st.number_input("A) indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    # indexdate_n = st.number_input("A) indexdate_n (T2D diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    indexdate_n_d = st.date_input("A) indexdate_n (T2D diagnosis date from 1-1-2000)", value="2000-01-01", min_value="2000-01-01", max_value="2010-01-01", format="YYYY/MM/DD")
+    indexdate_n = (indexdate_n_d - date(2000,1,1)).days
 
     Ethn = st.selectbox("A) Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
@@ -116,16 +119,18 @@ with col1:
     # Initialize session state
     if "num_inputs" not in st.session_state:
         st.session_state.num_inputs = 5
-    num = st.slider("A) How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
-    st.session_state.num_inputs 
+    num = st.slider("A) How many HbA1c measurements?", 1, 20, st.session_state.num_inputs)
+    #st.session_state.num_inputs 
     newPatientHBA1c = {}
 
     value = st.number_input(f"A) Percentage of HbA1c at diagnosis:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
     newPatientHBA1c[0] = value
 
+    col_time, col_value = st.columns(2)
+
     for i in range(1, num):
-        key = st.number_input(f"A) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value = st.number_input(f"A) HbA1c {i+1}:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+        key = col_time.number_input(   f"A) Time {i+1} (years from diagnosis):", step=0.1, value=float(i))
+        value = col_value.number_input(f"A) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
         if key:  # Only add if key is not empty
             newPatientHBA1c[key] = value
 
@@ -135,7 +140,7 @@ with col1:
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     risk1 = getRisk(x)
-    st.write("A) Risk: ", risk1)
+    #st.write("A) Risk: ", risk1)
 
 
 with col2:
@@ -147,8 +152,10 @@ with col2:
 
     aged2 = st.number_input("B) Age at T2D diagnosis:", value=65., step=0.1)
     imd2 = st.number_input("B) IMD (deciles of index of multiple deprivation):", value=6, step=1, min_value=1, max_value=10)
-    indexdate_n2 = st.number_input("B) indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
-
+    #indexdate_n2 = st.number_input("B) indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
+    indexdate_n2_d = st.date_input("B) indexdate_n (T2D diagnosis date from 1-1-2000)", value="2000-01-01", min_value="2000-01-01", max_value="2010-01-01", format="YYYY/MM/DD")
+    indexdate_n2 = (indexdate_n2_d - date(2000,1,1)).days
+    
     Ethn2 = st.selectbox("B) Patient Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
     if Ethn2 == "White":
@@ -226,16 +233,18 @@ with col2:
     # Initialize session state
     if "num_inputs" not in st.session_state:
         st.session_state.num_inputs = 5
-    num2 = st.slider("B) How many HbA1c measurements?", 1, 10, st.session_state.num_inputs)
-    st.session_state.num_inputs 
+    num2 = st.slider("B) How many HbA1c measurements?", 1, 20, st.session_state.num_inputs)
+    #st.session_state.num_inputs 
     newPatientHBA1c2 = {}
 
     value2 = st.number_input(f"B) Percentage of HbA1c at diagnosis:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
     newPatientHBA1c2[0] = value2
-
+    
+    col_time, col_value = st.columns(2)
+    
     for i in range(1, num2):
-        key2 = st.number_input(f"B) Time of observation {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value2 = st.number_input(f"B) HbA1c {i+1}:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+        key2 = col_time.number_input(f"B) Time {i+1} (years from diagnosis):", step=0.1, value=float(i))
+        value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
 
@@ -245,7 +254,7 @@ with col2:
     newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
     x2 = pd.DataFrame(newPatientSummary2, columns=Xnew2.keys())
     risk2 = getRisk(x2)
-    st.write("B) Risk: ", risk2)
+    #st.write("B) Risk: ", risk2)
 
 
 rate1 = baseline['hazard'] * risk1
