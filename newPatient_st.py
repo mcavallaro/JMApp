@@ -293,12 +293,12 @@ st.pyplot(fig)
 
 # Convert figure to PNG in memory
 buf = BytesIO()
-fig.savefig(
-    buf,
-    format="png",
-    dpi=300,
-    bbox_inches="tight"
-)
+#fig.savefig(
+#    buf,
+#    format="png",
+#    dpi=300,
+#    bbox_inches="tight"
+#)
 buf.seek(0)
 
 # Download button
