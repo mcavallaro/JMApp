@@ -305,7 +305,7 @@ ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', l
 
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
-ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B, label="Linear trend (Scenario B)")
+ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B)
 #2
 ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color=colour_A,  label="Prob. of death (Scenario A)")
 ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color=colour_B, label="Prob. of death (Scenario B)")
