@@ -13,7 +13,7 @@ def summarise(patientCharacteristics, HbA1c):
     HBA1c (dict)
     
     Returns:
-        Dict (dict): Contains all patient infomation, including summary of their trajectory
+        Dict (dict): Contains all patient infomation, including a summary of their trajectory
     """    
     # Extract Y and X
     HbA1c_ = {float(k): v for k, v in HbA1c.items()}
@@ -56,7 +56,8 @@ def summarise(patientCharacteristics, HbA1c):
     Dict = {"prediction": predictions[len(predictions) - 1], 
                 "residuals_mean": avg_residual,
                 "coeff": coeff,
-                "hba1c_value": y_new[len(y_new) - 1]}
+                "hba1c_value": y_new[len(y_new) - 1],
+                "predictions": [Z_new, predictions]}
     Dict = Dict | patientCharacteristics_ 
     return Dict
 

@@ -10,9 +10,6 @@ from PIL import Image
 from datetime import date
 from io import BytesIO
 
-#plt.rcdefaults()
-plt.rcParams.update({"font.family": "Source Sans 3"})
-
 col1, col2 = st.columns([2, 1])
 
 with col1:
@@ -23,7 +20,7 @@ with col2:
 
 
 
-st.text("This app takes as input demographics and repeated HbA1c measurements for two T2D patients. It returns the cumulative probability of death over time. In the figure, the two patients' HbA1c trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
+st.text("This app uses demographic data and repeated HbA1c measurements to predict T2D-associated mortality over time. It visualises HbA1c trajectories alongside the predicted cumulative probability of death, enabling comparison between two patient scenarios.")
 
 col1, col2 = st.columns(2, border=True)
 col1.subheader("Scenario A")
@@ -138,8 +135,8 @@ with col1:
         if key:  # Only add if key is not empty
             newPatientHBA1c[key] = value
 
-    blup = summarise(newPatientCharact, newPatientHBA1c) 
-    Xnew = {key: float(blup[key]) for key in XColumns}
+    summary = summarise(newPatientCharact, newPatientHBA1c) 
+    Xnew = {key: float(summary[key]) for key in XColumns}
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
@@ -252,8 +249,8 @@ with col2:
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
 
-    blup2 = summarise(newPatientCharact2, newPatientHBA1c2) 
-    Xnew2 = {key: blup2[key] for key in XColumns}
+    summary2 = summarise(newPatientCharact2, newPatientHBA1c2) 
+    Xnew2 = {key: summary2[key] for key in XColumns}
 
     newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
     x2 = pd.DataFrame(newPatientSummary2, columns=Xnew2.keys())
@@ -269,9 +266,6 @@ prob2 = 100 * (1 - np.exp(-np.cumsum(rate2)))
 
 fig, ax = plt.subplots()
 ax_right = ax.twinx()
-
-
-
 
 
     
@@ -293,8 +287,12 @@ value2 = list(newPatientHBA1c2.values())
 colour_A = "#1F77B4"
 colour_B = "#E15759"
 
-ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", color=colour_A, label="Scenario A\'s HbA1c trajectory")
-ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color=colour_B, label="Scenario B\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=1, color=colour_A, label="Scenario A\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=2, color=colour_B, label="Scenario B\'s HbA1c trajectory")
+
+ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=1, color=colour_A)
+ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=1, color=colour_B)
+
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
 ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B)
@@ -310,7 +308,7 @@ ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
 ax.grid(True) #, axis='x')
-ax_right.grid(False) #, axis='y')
+ax_right.grid(True, axis='y')
 
 
 
