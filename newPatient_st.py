@@ -282,8 +282,7 @@ range__ = range_[1] - range_[0]
 
 xminmax = (np.array([time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']])- range_[0]) / range__
 xmin = min(xminmax)
-xmax = min(xminmax)
- (np.array([time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']])- range_[0]) / range__
+xmax = max(xminmax)
 st.write(range_)
 st.write(range__)
 st.write(xmin)
