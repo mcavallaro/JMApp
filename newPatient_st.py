@@ -281,15 +281,15 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 
-for y in [20, 40, 60, 80]:
-    ax_right.hlines(y=y,
-                    xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
-                    xmax=time_from_Dx1[-1] + newPatientCharact['aged'] + baseline['time'][-1], color="gray", linestyle="--")
-for y in [4, 6, 8, 10, 12, 14, 16, 18]:
-    ax.hlines(y=y,
-              xmin=newPatientCharact['aged'],
-              xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--")
-#
+#for y in [20, 40, 60, 80]:
+#    ax_right.hlines(y=y,
+#                    xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
+#                    xmax=time_from_Dx1[-1] + newPatientCharact['aged'] + baseline['time'][-1], color="gray", linestyle="--")
+#for y in [4, 6, 8, 10, 12, 14, 16, 18]:
+#    ax.hlines(y=y,
+#              xmin=newPatientCharact['aged'],
+#              xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--")
+
 colour_A = "#1F77B4"
 colour_B = "#E15759"
 
@@ -309,7 +309,7 @@ ax.set_ylim([3.8, 20])
 ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
-ax.grid(True, axis='x')
+#ax.grid(True, axis='x')
 #ax_right.grid(False, axis='y')
 
 
