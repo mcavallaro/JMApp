@@ -290,9 +290,9 @@ xmax = max(xminmax)
 
 
 for y in [20, 40, 60, 80]:
-    ax_right.axhline(y=y, xmin=xmin, color="gray", linestyle="--", alpha=0.5, lw=1)
+    ax_right.axhline(y=y, xmin=xmin, color="gray", alpha=0.5, lw=1)
 for y in [4, 6, 8, 10, 12, 14, 16, 18]:
-    ax.axhline(y=y, xmax=xmax, color="gray", linestyle="--", alpha=0.5, lw=1)
+    ax.axhline(y=y, xmax=xmax, color="gray", alpha=0.5, lw=1)
 
 colour_A = "#1F77B4"
 colour_B = "#E15759"
@@ -317,7 +317,7 @@ ax.set_ylim([3.8, 20])
 ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
-#ax.grid(True)
+ax.grid(True, axis='x')
 #ax.grid(False, axis='x')
 #ax_right.grid(False, axis='x')
 
