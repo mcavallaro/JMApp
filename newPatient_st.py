@@ -10,6 +10,7 @@ from PIL import Image
 from datetime import date
 from io import BytesIO
 
+plt.rcdefaults()
 plt.rcParams.update({"font.family": "Source Sans 3"})
 
 col1, col2 = st.columns([2, 1])
@@ -268,6 +269,13 @@ prob2 = 100 * (1 - np.exp(-np.cumsum(rate2)))
 
 fig, ax = plt.subplots()
 ax_right = ax.twinx()
+
+
+for y in [20, 40, 60, 80]:
+    ax.plot()
+for y in [4, 6, 8, 10, 12, 14, 16, 18]:
+    ax.plot()
+    
 time_from_Dx1 = list(newPatientHBA1c.keys())
 value1 = list(newPatientHBA1c.values())
 time_from_Dx2 = list(newPatientHBA1c2.keys())
@@ -294,7 +302,9 @@ ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
 ax.grid(False, axis='y')
-#ax_right.grid(False, axis='y')
+ax_right.grid(False, axis='y')
+
+
 
 st.pyplot(fig)
 
