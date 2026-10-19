@@ -22,8 +22,8 @@ with col2:
 st.text("This app takes as input demographics and repeated HbA1c measurements for two T2D patients. It returns the cumulative probability of death over time. In the figure, the two patients' HbA1c trajectories are plotted against the age and overlayed with each patient’s probability of T2D associated death.")
 
 col1, col2 = st.columns(2, border=True)
-col1.subheader("Patient A")
-col2.subheader("Patient B")
+col1.subheader("Scenario A")
+col2.subheader("Scenario B")
 
 with col1:
     Sex = st.selectbox("A) Patient Sex:", ["Male", "Female"])
