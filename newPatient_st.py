@@ -276,8 +276,8 @@ value2 = list(newPatientHBA1c2.values())
 
 
 
-range_ = [max(max(baseline['time']) + time_from_Dx1[-1] + newPatientCharact['aged'], max(baseline['time']) + time_from_Dx2[-1] + newPatientCharact2['aged'] ),
-          min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) ]
+range_ = [min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']),
+          max(max(baseline['time']) + time_from_Dx1[-1] + newPatientCharact['aged'], max(baseline['time']) + time_from_Dx2[-1] + newPatientCharact2['aged'] )]
 range__ = range_[1] - range_[0]
 
 xmin = min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'] - range_[0]) / range__
