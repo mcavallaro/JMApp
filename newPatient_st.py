@@ -10,6 +10,18 @@ from PIL import Image
 from datetime import date
 from io import BytesIO
 
+
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+.stApp {
+    font-family: "Source Sans 3", sans-serif;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 col1, col2 = st.columns([2, 1])
 
 with col1:
@@ -306,7 +318,8 @@ buf.seek(0)
 st.download_button(
     label="Download figure",
     data=buf,
-   file_name="figure.png",
+    width="stretch",
+    file_name="figure.png",
     mime="image/png"
 )
 
