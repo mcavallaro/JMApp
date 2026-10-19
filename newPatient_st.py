@@ -10,7 +10,7 @@ from PIL import Image
 from datetime import date
 from io import BytesIO
 
-plt.rcdefaults()
+#plt.rcdefaults()
 plt.rcParams.update({"font.family": "Source Sans 3"})
 
 col1, col2 = st.columns([2, 1])
