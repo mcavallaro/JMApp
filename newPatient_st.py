@@ -292,7 +292,10 @@ ax_right.set_ylim([0,100])
 ax.set_ylim([3.8, 20])
 ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
-ax.grid(True, axis='x')
+
+ax.grid(False, axis='y')
+ax_right(False, axis='y')
+
 st.pyplot(fig)
 
 
