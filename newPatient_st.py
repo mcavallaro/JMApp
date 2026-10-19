@@ -36,8 +36,8 @@ with col1:
     aged = st.number_input("A) Age at T2D diagnosis:", value=65., step=0.1)
     imd = st.number_input("A) IMD (deciles of index of multiple deprivation):", value=6, step=1, min_value=1, max_value=10)
     # indexdate_n = st.number_input("A) indexdate_n (T2D diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
-    indexdate_n_d = st.date_input("A) indexdate_n (T2D diagnosis date from 1-1-2000)", value="2000-01-01", min_value="2000-01-01", max_value="2010-01-01", format="YYYY/MM/DD")
-    indexdate_n = (indexdate_n_d - date(2000,1,1)).days
+    #indexdate_n_d = st.date_input("A) indexdate_n (T2D diagnosis date from 1-1-2000)", value="2000-01-01", min_value="2000-01-01", max_value="2010-01-01", format="YYYY/MM/DD")
+    #indexdate_n = (indexdate_n_d - date(2000,1,1)).days
 
     Ethn = st.selectbox("A) Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
@@ -106,7 +106,7 @@ with col1:
            'Other', 'male', 'tyears', 'prediction']
     newPatientCharact = {
             "aged": aged,
-            'indexdate_n': indexdate_n,
+            #'indexdate_n': indexdate_n,
             'imd': imd,
             'White': White,
             'Black': Black,
@@ -156,8 +156,8 @@ with col2:
     aged2 = st.number_input("B) Age at T2D diagnosis:", value=65., step=0.1)
     imd2 = st.number_input("B) IMD (deciles of index of multiple deprivation):", value=6, step=1, min_value=1, max_value=10)
     #indexdate_n2 = st.number_input("B) indexdate_n (T2DM diagnosis date, in days from 1-1-2000):", value=2, step=1, min_value=1, max_value=10*365)
-    indexdate_n2_d = st.date_input("B) indexdate_n (T2D diagnosis date from 1-1-2000)", value="2000-01-01", min_value="2000-01-01", max_value="2010-01-01", format="YYYY/MM/DD")
-    indexdate_n2 = (indexdate_n2_d - date(2000,1,1)).days
+    #indexdate_n2_d = st.date_input("B) indexdate_n (T2D diagnosis date from 1-1-2000)", value="2000-01-01", min_value="2000-01-01", max_value="2010-01-01", format="YYYY/MM/DD")
+    #indexdate_n2 = (indexdate_n2_d - date(2000,1,1)).days
     
     Ethn2 = st.selectbox("B) Patient Ethnicity:",
 	    ["White", "Black", "South_East_Asian", "Other_Asian", "Mixed", "Chinese", "Other"])
@@ -220,7 +220,7 @@ with col2:
         
     newPatientCharact2 = {
             "aged": aged2,
-            'indexdate_n': indexdate_n2,
+            #'indexdate_n': indexdate_n2,
             'imd': imd2,
             'White': White2,
             'Black': Black2,
