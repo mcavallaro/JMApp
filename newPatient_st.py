@@ -283,10 +283,10 @@ range__ = range_[1] - range_[0]
 xminmax = (np.array([time_from_Dx1[-1] + newPatientCharact['aged']  , time_from_Dx2[-1] + newPatientCharact2['aged']  ])- range_[0]) / range__
 xmin = min(xminmax)
 xmax = max(xminmax)
-st.write(range_)
-st.write(range__)
-st.write(xminmax)
-st.write(xmax)
+#st.write(range_)
+#st.write(range__)
+#st.write(xminmax)
+#st.write(xmax)
 
 
 for y in [20, 40, 60, 80]:
@@ -297,18 +297,18 @@ for y in [4, 6, 8, 10, 12, 14, 16, 18]:
 colour_A = "#1F77B4"
 colour_B = "#E15759"
 
-ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=3, color=colour_A, label="Scenario A\'s HbA1c trajectory")
-ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=3, color=colour_B, label="Scenario B\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=3, color=colour_A,  label="HbA1c trajectory (Scenario A)")
+ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=3, color=colour_B, label="HbA1c trajectory (Scenario B)")
 
 ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=2, color=colour_A, alpha=0.7)
 ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=2, color=colour_B, alpha=0.7)
 
 #
-ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
-ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B)
+ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A,  label="Linear trend (Scenario A)")
+ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B, label="Linear trend (Scenario B)")
 #2
-ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color=colour_A, label="Scenario A\'s prob. of death")
-ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color=colour_B, label="Scenario B\'s prob. of death")
+ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color=colour_A,  label="Prob. of death (Scenario A)")
+ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color=colour_B, label="Prob. of death (Scenario B)")
 ax_right.set_ylabel('Patient probability of death [%]')
 ax.set_xlabel('Age')
 ax.set_ylabel('HbA1c [%]')
@@ -318,8 +318,8 @@ ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
 ax.grid(False, axis='x')
-ax_right.grid(False, axis='y')
-
+ax_right.grid(False, axis='x')
+ax.grid(True, axis='y')
 
 
 st.pyplot(fig)
