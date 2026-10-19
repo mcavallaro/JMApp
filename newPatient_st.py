@@ -285,7 +285,7 @@ xmin = min(xminmax)
 xmax = max(xminmax)
 st.write(range_)
 st.write(range__)
-st.write(xmin)
+st.write(xminmax)
 st.write(xmax)
 
 
