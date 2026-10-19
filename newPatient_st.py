@@ -10,18 +10,7 @@ from PIL import Image
 from datetime import date
 from io import BytesIO
 
-plt.style.use("plot.mplstyle")
-
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap');
-
-.stApp {
-    font-family: "Source Sans 3", sans-serif;
-}
-</style>
-""", unsafe_allow_html=True)
-
+plt.rcParams.update({"font.family": "Source Sans 3"})
 
 col1, col2 = st.columns([2, 1])
 
@@ -285,14 +274,14 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 #
-ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", color='tab:blue', label="Patient A\'s HbA1c trajectory")
-ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color='tab:orange', label="Patient B\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", color='tab:blue', label="Scenario A\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color='tab:orange', label="Scenario B\'s HbA1c trajectory")
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color='tab:blue')
 ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color='tab:orange')
 #2
-ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color='tab:blue', label="Patient A\'s prob. of death")
-ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color='tab:orange', label="Patient B\'s prob. of death")
+ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color='tab:blue', label="Scenario A\'s prob. of death")
+ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color='tab:orange', label="Scenario B\'s prob. of death")
 ax_right.set_ylabel('Patient probability of death [%]')
 ax.set_xlabel('Age')
 ax.set_ylabel('HbA1c [%]')
