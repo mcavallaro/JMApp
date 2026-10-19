@@ -98,10 +98,12 @@ with col1:
         Chinese = 0
         Other = 0
         
-    XColumns = ['residuals_mean', 'coeff', 'indexdate_n', 'aged', 'imd', 'hba1c_value',
+    #XColumns = ['residuals_mean', 'coeff', 'indexdate_n', 'aged', 'imd', 'hba1c_value',
+    #       'White', 'Black', 'South_East_Asian', 'Other_Asian', 'Mixed', 'Chinese',
+    #       'Other', 'male', 'tyears', 'prediction']
+    XColumns = ['residuals_mean', 'coeff', 'aged', 'imd', 'hba1c_value',
            'White', 'Black', 'South_East_Asian', 'Other_Asian', 'Mixed', 'Chinese',
            'Other', 'male', 'tyears', 'prediction']
-
     newPatientCharact = {
             "aged": aged,
             'indexdate_n': indexdate_n,
