@@ -309,8 +309,8 @@ ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', l
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
 ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B)
 #2
-ax_right.fill_between(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], np.zeros(len(prob1)), prob1, color=colour_A, alpha=0.5, label="Prob. of death (Scenario A)")
-ax_right.fill_between(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], np.zeros(len(prob2)), prob2, color=colour_B, alpha=0.5, label="Prob. of death (Scenario B)")
+ax_right.fill_between(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], np.zeros(len(prob1)), prob1, lw=0, color=colour_A, alpha=0.5, label="Prob. of death (Scenario A)")
+ax_right.fill_between(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], np.zeros(len(prob2)), prob2, lw=0, color=colour_B, alpha=0.5, label="Prob. of death (Scenario B)")
 ax_right.set_ylabel('Patient probability of death [%]')
 ax.set_xlabel('Age')
 ax.set_ylabel('HbA1c [%]')

@@ -26,7 +26,7 @@ arr = np.loadtxt(
 fixedEffects = dict(zip(arr[:, 0], arr[:, 1].astype(float)))
 del arr
 fixedEffects["intercept"] = fixedEffects.pop("(Intercept)")    
-    
+print(fixedEffects)
     
 # random effect covariance matrix
 #G = np.array([[1.390534, -0.043312501402308475],[-0.043312501402308475, 0.014563]])
