@@ -1,5 +1,5 @@
 # Stata-inspired Matplotlib style
-# Apply with: plt.style.use("stata.mplstyle")
+# Apply with: plt.style.use("plot.mplstyle")
 
 # Figure and plot backgrounds
 figure.facecolor: white
@@ -49,5 +49,5 @@ axes.prop_cycle: cycler('color', ['#1F77B4', '#E15759', '#59A14F', '#8064A2', '#
 legend.frameon: False
 
 # Output quality
-figure.dpi: 120
-savefig.dpi: 300
+#figure.dpi: 120
+#savefig.dpi: 300
