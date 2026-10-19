@@ -275,19 +275,27 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 
-#for y in [20, 40, 60, 80]:
-#    ax_right.hlines(y=y,
-#                    xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
-#                    xmax=time_from_Dx1[-1] + newPatientCharact['aged'] + baseline['time'][-1], color="gray", linestyle="--")
-#for y in [4, 6, 8, 10, 12, 14, 16, 18]:
-#    ax.hlines(y=y,
-#              xmin=newPatientCharact['aged'],
-#              xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--")
+for y in [20, 40, 60, 80]:
+    ax_right.axhlines(y=y,
+                    xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
+                    xmax=time_from_Dx1[-1] + newPatientCharact['aged'] + baseline['time'][-1], color="gray", linestyle="--", alpha=0.5, lw=2)
+for y in [4, 6, 8, 10, 12, 14, 16, 18]:
+    ax.axhlines(y=y,
+              xmin=newPatientCharact['aged'],
+              xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--", alpha=0.5, lw=2)
+
+
+xmin = min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'])
+xmax = max(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'])
+for y in [20, 40, 60, 80]:
+    ax_right.axhlines(y=y, xmin=xmin, color="gray", linestyle="--", alpha=0.5, lw=2)
+for y in [4, 6, 8, 10, 12, 14, 16, 18]:
+    ax.axhlines(y=y, xmax=xmax, color="gray", linestyle="--", alpha=0.5, lw=2)
 
 colour_A = "#1F77B4"
 colour_B = "#E15759"
 
-ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=3, color=colour_A, label="Scenario A\'s HbA1c 2trajectory")
+ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=3, color=colour_A, label="Scenario A\'s HbA1c trajectory")
 ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=3, color=colour_B, label="Scenario B\'s HbA1c trajectory")
 
 ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=2, color=colour_A, alpha=0.7)
