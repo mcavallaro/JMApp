@@ -289,6 +289,29 @@ ax_right.legend(loc='lower right')
 ax.grid(True)
 st.pyplot(fig)
 
+
+
+# Convert figure to PNG in memory
+buf = BytesIO()
+fig.savefig(
+    buf,
+    format="png",
+    dpi=300,
+    bbox_inches="tight"
+)
+buf.seek(0)
+
+# Download button
+#st.download_button(
+#    label="Download figure",
+#    data=buf,
+#   file_name="figure.png",
+#    mime="image/png"
+#)
+
+
+
+
 #fig, ax = plt.subplots()
 #ax.plot(baseline['time'], prob1, lw=2, color='tab:blue', label='Patient A')
 #ax.plot(baseline['time'], prob2, lw=2, color='tab:orange', label='Patient B')
