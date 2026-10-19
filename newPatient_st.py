@@ -8,6 +8,7 @@ from utils import summarise, getRisk
 from parameters import baseline
 from PIL import Image
 from datetime import date
+from io import BytesIO
 
 col1, col2 = st.columns([2, 1])
 
@@ -293,21 +294,21 @@ st.pyplot(fig)
 
 # Convert figure to PNG in memory
 buf = BytesIO()
-#fig.savefig(
-#    buf,
-#    format="png",
-#    dpi=300,
-#    bbox_inches="tight"
-#)
+fig.savefig(
+    buf,
+    format="png",
+    dpi=300,
+    bbox_inches="tight"
+)
 buf.seek(0)
 
 # Download button
-#st.download_button(
-#    label="Download figure",
-#    data=buf,
-#   file_name="figure.png",
-#    mime="image/png"
-#)
+st.download_button(
+    label="Download figure",
+    data=buf,
+   file_name="figure.png",
+    mime="image/png"
+)
 
 
 
