@@ -276,11 +276,11 @@ value2 = list(newPatientHBA1c2.values())
 
 
 
-range_ = [min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']),
+range_ = [min( newPatientCharact['aged'], newPatientCharact2['aged']),
           max(max(baseline['time']) + time_from_Dx1[-1] + newPatientCharact['aged'], max(baseline['time']) + time_from_Dx2[-1] + newPatientCharact2['aged'] )]
 range__ = range_[1] - range_[0]
 
-xminmax = (np.array([time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']])- range_[0]) / range__
+xminmax = (np.array([time_from_Dx1[-1] + newPatientCharact['aged']  , time_from_Dx2[-1] + newPatientCharact2['aged']  ])- range_[0]) / range__
 xmin = min(xminmax)
 xmax = max(xminmax)
 st.write(range_)
