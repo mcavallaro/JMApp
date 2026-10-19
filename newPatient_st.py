@@ -10,6 +10,7 @@ from PIL import Image
 from datetime import date
 from io import BytesIO
 
+plt.style.use("plot.mplstyle")
 
 st.markdown("""
 <style>
