@@ -280,8 +280,8 @@ range_ = [max(max(baseline['time']) + time_from_Dx1[-1] + newPatientCharact['age
           min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) ]
 range__ = range_[1] - range_[0]
 
-xmin = min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) / range__
-xmax = max(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) / range__
+xmin = min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'] - range-[0]) / range__
+xmax = max(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'] - range-[0]) / range__
 st.write(range_)
 st.write(xmin)
 st.write(xmax)
