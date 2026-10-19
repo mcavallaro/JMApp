@@ -138,7 +138,7 @@ with col1:
     summary = summarise(newPatientCharact, newPatientHBA1c) 
     Xnew = {key: float(summary[key]) for key in XColumns}
     
-    st.write(summary)
+    st.write(summary['predictions'])
 
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
