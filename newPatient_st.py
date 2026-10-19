@@ -274,16 +274,17 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 #
-colour.A = 'tab:blue'
-colour.B = 'tab:orange'
-ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", color='tab:blue', label="Scenario A\'s HbA1c trajectory")
-ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color=colour.B, label="Scenario B\'s HbA1c trajectory")
+colour_A = "#1F77B4"
+colour_B = "#E15759"
+
+ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", color=colour_A, label="Scenario A\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color=colour_B, label="Scenario B\'s HbA1c trajectory")
 #
-ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color='tab:blue')
-ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color='tab:orange')
+ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
+ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B)
 #2
-ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color='tab:blue', label="Scenario A\'s prob. of death")
-ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color='tab:orange', label="Scenario B\'s prob. of death")
+ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color=colour_A, label="Scenario A\'s prob. of death")
+ax_right.plot(baseline['time'] + time_from_Dx2[-1] + newPatientCharact2['aged'], prob2, lw=2, color=colour_B, label="Scenario B\'s prob. of death")
 ax_right.set_ylabel('Patient probability of death [%]')
 ax.set_xlabel('Age')
 ax.set_ylabel('HbA1c [%]')
@@ -319,8 +320,8 @@ st.download_button(
 
 
 #fig, ax = plt.subplots()
-#ax.plot(baseline['time'], prob1, lw=2, color='tab:blue', label='Patient A')
-#ax.plot(baseline['time'], prob2, lw=2, color='tab:orange', label='Patient B')
+#ax.plot(baseline['time'], prob1, lw=2, color=colour_A, label='Patient A')
+#ax.plot(baseline['time'], prob2, lw=2, color=colour_B, label='Patient B')
 #ax.set_ylabel('Patient probability of death [%]')
 #ax.set_xlabel('Years from last HbA1c measurement')
 #ax.set_ylim([0,100])
