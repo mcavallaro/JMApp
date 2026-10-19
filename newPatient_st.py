@@ -317,8 +317,8 @@ ax.set_ylim([3.8, 20])
 ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
-ax.grid(True) #, axis='x')
-ax_right.grid(True, axis='y')
+ax.grid(True, axis='x')
+#ax_right.grid(True, axis='y')
 
 
 
