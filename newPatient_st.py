@@ -294,7 +294,7 @@ ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
 ax.grid(False, axis='y')
-ax_right(False, axis='y')
+ax_right.grid(False, axis='y')
 
 st.pyplot(fig)
 
