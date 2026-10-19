@@ -293,7 +293,6 @@ ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='
 ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=2, color=colour_B, label="Scenario B\'s HbA1c trajectory")
 
 ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=1, color=colour_A)
-ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=1, color=colour_B)
 
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
