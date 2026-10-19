@@ -300,11 +300,11 @@ colour_B = "#E15759"
 ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=3, color=colour_A,  label="HbA1c trajectory (Scenario A)")
 ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=3, color=colour_B, label="HbA1c trajectory (Scenario B)")
 
-ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=2, color=colour_A, alpha=0.7)
-ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=2, color=colour_B, alpha=0.7)
+ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=2, color=colour_A, alpha=0.7, label="Linear trend (Scenario A)")
+ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=2, color=colour_B, alpha=0.7, label="Linear trend (Scenario B)")
 
 #
-ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A,  label="Linear trend (Scenario A)")
+ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
 ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color=colour_B, label="Linear trend (Scenario B)")
 #2
 ax_right.plot(baseline['time'] + time_from_Dx1[-1] + newPatientCharact['aged'], prob1, lw=2, color=colour_A,  label="Prob. of death (Scenario A)")
