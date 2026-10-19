@@ -274,8 +274,10 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 #
+colour.A = 'tab:blue'
+colour.B = 'tab:orange'
 ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", color='tab:blue', label="Scenario A\'s HbA1c trajectory")
-ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color='tab:orange', label="Scenario B\'s HbA1c trajectory")
+ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", color=colour.B, label="Scenario B\'s HbA1c trajectory")
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color='tab:blue')
 ax.axvline(time_from_Dx2[-1] + newPatientCharact2['aged'], linestyle='--', alpha=0.5, color='tab:orange')
@@ -289,7 +291,7 @@ ax_right.set_ylim([0,100])
 ax.set_ylim([3.8, 20])
 ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
-ax.grid(True)
+ax.grid(True, axis='x')
 st.pyplot(fig)
 
 
