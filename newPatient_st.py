@@ -271,10 +271,16 @@ fig, ax = plt.subplots()
 ax_right = ax.twinx()
 
 
+
+
 for y in [20, 40, 60, 80]:
-    ax.plot()
+    ax_right.hlines(y=y,
+                    xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
+                    xmax=time_from_Dx1[-1] + newPatientCharact['aged'] + baseline['time'][-1], color="gray", linestyle="--")
 for y in [4, 6, 8, 10, 12, 14, 16, 18]:
-    ax.plot()
+    ax.hlines(y=y,
+              xmin=newPatientCharact['aged'],
+              xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--")
     
 time_from_Dx1 = list(newPatientHBA1c.keys())
 value1 = list(newPatientHBA1c.values())
@@ -301,8 +307,8 @@ ax.set_ylim([3.8, 20])
 ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
-ax.grid(False, axis='y')
-ax_right.grid(False, axis='y')
+ax.grid(True, axis='x')
+#ax_right.grid(False, axis='y')
 
 
 
