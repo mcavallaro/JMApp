@@ -290,7 +290,7 @@ st.write(xmax)
 
 
 for y in [20, 40, 60, 80]:
-    ax_right.axhlines(y=y, xmin=xmin, color="gray", linestyle="--", alpha=0.5, lw=2)
+    ax_right.axhlines(y=y, xmin=0.5, color="gray", linestyle="--", alpha=0.5, lw=2)
 #for y in [4, 6, 8, 10, 12, 14, 16, 18]:
 #    ax.axhlines(y=y, xmax=xmax, color="gray", linestyle="--", alpha=0.5, lw=2)
 
