@@ -275,15 +275,6 @@ time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
 
 
-for y in [20, 40, 60, 80]:
-    ax_right.axhlines(y=y,
-                    xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
-                    xmax=time_from_Dx1[-1] + newPatientCharact['aged'] + baseline['time'][-1], color="gray", linestyle="--", alpha=0.5, lw=2)
-for y in [4, 6, 8, 10, 12, 14, 16, 18]:
-    ax.axhlines(y=y,
-              xmin=newPatientCharact['aged'],
-              xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--", alpha=0.5, lw=2)
-
 
 xmin = min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'])
 xmax = max(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged'])
