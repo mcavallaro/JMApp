@@ -273,6 +273,14 @@ ax_right = ax.twinx()
 
 
 
+
+    
+time_from_Dx1 = list(newPatientHBA1c.keys())
+value1 = list(newPatientHBA1c.values())
+time_from_Dx2 = list(newPatientHBA1c2.keys())
+value2 = list(newPatientHBA1c2.values())
+
+
 for y in [20, 40, 60, 80]:
     ax_right.hlines(y=y,
                     xmin=time_from_Dx1[-1] + newPatientCharact['aged'],
@@ -281,12 +289,6 @@ for y in [4, 6, 8, 10, 12, 14, 16, 18]:
     ax.hlines(y=y,
               xmin=newPatientCharact['aged'],
               xmax=time_from_Dx1[-1] + newPatientCharact['aged'], color="gray", linestyle="--")
-    
-time_from_Dx1 = list(newPatientHBA1c.keys())
-value1 = list(newPatientHBA1c.values())
-time_from_Dx2 = list(newPatientHBA1c2.keys())
-value2 = list(newPatientHBA1c2.values())
-
 #
 colour_A = "#1F77B4"
 colour_B = "#E15759"
