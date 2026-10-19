@@ -279,7 +279,11 @@ value2 = list(newPatientHBA1c2.values())
 range_ = max(max(baseline['time']) + time_from_Dx1[-1] + newPatientCharact['aged'], max(baseline['time']) + time_from_Dx2[-1] + newPatientCharact2['aged'] ) - min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) 
 xmin = min(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) / range_
 xmax = max(time_from_Dx1[-1] + newPatientCharact['aged'], time_from_Dx2[-1] + newPatientCharact2['aged']) / range_
-print(xmin, xmax, range_)
+
+st.write(xmin)
+st.write(xmax)
+st.write(range_)
+
 for y in [20, 40, 60, 80]:
     ax_right.axhlines(y=y, xmin=xmin, color="gray", linestyle="--", alpha=0.5, lw=2)
 for y in [4, 6, 8, 10, 12, 14, 16, 18]:
