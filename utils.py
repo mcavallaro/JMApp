@@ -59,7 +59,7 @@ def summarise(patientCharacteristics, HbA1c):
                 "hba1c_value": y_new[len(y_new) - 1],
                 "predictions": (np.array(list(HbA1c_.keys()), dtype=float) + patientCharacteristics_['aged'], predictions),
                 "b_hat": b_hat,
-                "eeee": X_new @ beta_hat + fixedEffects["intercept"]}
+                "eeee":   fixedEffects["intercept"]}
     Dict = Dict | patientCharacteristics_ 
     return Dict
 
