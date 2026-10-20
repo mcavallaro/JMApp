@@ -19,7 +19,7 @@ def summarise(patientCharacteristics, HbA1c):
     HbA1c_ = {float(k): v for k, v in HbA1c.items()}
     HbA1c_ = dict(sorted(HbA1c_.items()))
     y_new = np.array(list(HbA1c_.values()), dtype=float)
-    Z_new = np.array(list(HbA1c_.keys()), dtype=float) 
+    Z_new = np.array(list(HbA1c_.keys()), dtype=float)
     
     patientCharacteristics_ =  patientCharacteristics.copy()    
     patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1]
@@ -29,6 +29,9 @@ def summarise(patientCharacteristics, HbA1c):
     Z_new = np.vstack([I, Z_new]).transpose()
 
     sortedFixedEffects = {key: fixedEffects[key] for key in patientCharacteristics_.keys() if key in fixedEffects.keys()}
+    
+   
+    
     
     # beta_hat: array-like, fixed effect coefficients
     beta_hat = np.array(list(sortedFixedEffects.values()))
@@ -44,6 +47,10 @@ def summarise(patientCharacteristics, HbA1c):
     V = Z_new @ G @ Z_new.T + sigma2 * np.eye(len(y_new))
     V_inv = np.linalg.inv(V)
     b_hat = G @ Z_new.T @ V_inv @ resid
+    
+    
+
+    
 
     predictions = (X_new @ beta_hat + fixedEffects["intercept"]) + Z_new @ b_hat
 
@@ -53,9 +60,22 @@ def summarise(patientCharacteristics, HbA1c):
     #  from the julia lm code:
     # coeff = fixed_effects[2] .+ random_effects[2, :];
     coeff = fixedEffects['tyears'] + b_hat[1]
+    
+    
+    #alternative:
+    V = Z_new @ G @ Z_new.T + sigma2 * np.eye(len(y_new))
+    VinvX = np.linalg.solve(V, X_new)
+    Vinvy = np.linalg.solve(V, y_new)
+    cov_beta = np.linalg.inv(X.T @ VinvX)          # Var(beta_hat)
+    beta = cov_beta @ (X.T @ Vinvy)                # BLUE
+    b_hat_2 = G @ Z_new.T @ np.linalg.solve(V, y_new - X @ beta_hat) # BLUP
+    
+        
+    
     Dict = {"prediction": predictions[len(predictions) - 1], 
                 "residuals_mean": avg_residual,
                 "coeff": coeff,
+                "b_hat": [b_hat, b_hat2],
                 "hba1c_value": y_new[len(y_new) - 1],
                 "predictions": (np.array(list(HbA1c_.keys()), dtype=float) + patientCharacteristics_['aged'], predictions)
                 }
