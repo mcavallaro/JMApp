@@ -126,14 +126,14 @@ with col1:
     #st.session_state.num_inputs 
     newPatientHBA1c = {}
 
-    value = st.number_input(f"A) Percentage of HbA1c at diagnosis:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+    value = st.number_input(f"A) Percentage of HbA1c at diagnosis:", step=0.1, value=float(np.random.uniform(4,10), min_value=float(4), max_value=float(20))
     newPatientHBA1c[0] = value
 
     col_time, col_value = st.columns(2)
 
     for i in range(1, num):
         key = col_time.number_input(   f"A) Time {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value = col_value.number_input(f"A) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+        value = col_value.number_input(f"A) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(np.random.uniform(4,10), min_value=float(4), max_value=float(20))
         if key:  # Only add if key is not empty
             newPatientHBA1c[key] = value
 
