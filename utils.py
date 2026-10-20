@@ -30,8 +30,6 @@ def summarise(patientCharacteristics, HbA1c):
 
     sortedFixedEffects = {key: fixedEffects[key] for key in patientCharacteristics_.keys() if key in fixedEffects.keys()}
     
-   
-    
     
     # beta_hat: array-like, fixed effect coefficients
     beta_hat = np.array(list(sortedFixedEffects.values()))
@@ -46,11 +44,7 @@ def summarise(patientCharacteristics, HbA1c):
     # Compute marginal variance of y_new and random effects
     V = Z_new @ G @ Z_new.T + sigma2 * np.eye(len(y_new))
     V_inv = np.linalg.inv(V)
-    b_hat = G @ Z_new.T @ V_inv @ resid
-    
-    
-
-    
+    b_hat = G @ Z_new.T @ V_inv @ resid   
 
     predictions = (X_new @ beta_hat + fixedEffects["intercept"]) + Z_new @ b_hat
 
@@ -69,8 +63,7 @@ def summarise(patientCharacteristics, HbA1c):
     cov_beta = np.linalg.inv(X.T @ VinvX)          # Var(beta_hat)
     beta = cov_beta @ (X.T @ Vinvy)                # BLUE
     b_hat_2 = G @ Z_new.T @ np.linalg.solve(V, y_new - X @ beta_hat) # BLUP
-    
-        
+      
     
     Dict = {"prediction": predictions[len(predictions) - 1], 
                 "residuals_mean": avg_residual,
