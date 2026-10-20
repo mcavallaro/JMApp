@@ -138,15 +138,13 @@ with col1:
             newPatientHBA1c[key] = value
 
     summary = summarise(newPatientCharact, newPatientHBA1c) 
-    
-    st.write(newPatientCharact)
-    
+      
     Xnew = {key: float(summary[key]) for key in XColumns}
     
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     risk1 = getRisk(x)
-    #st.write("A) Risk: ", risk1)
+    st.write("A) Risk: ", x.columns)
 
 
 with col2:
