@@ -144,8 +144,7 @@ with col1:
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     risk1 = getRisk(x)
-    st.write("A) Risk: ", x.columns)
-
+    st.write(summary)
 
 with col2:
     Sex2 = st.selectbox("B) Patient Sex:", ["Male", "Female"])

@@ -57,7 +57,8 @@ def summarise(patientCharacteristics, HbA1c):
                 "residuals_mean": avg_residual,
                 "coeff": coeff,
                 "hba1c_value": y_new[len(y_new) - 1],
-                "predictions": (np.array(list(HbA1c_.keys()), dtype=float) + patientCharacteristics_['aged'], predictions)}
+                "predictions": (np.array(list(HbA1c_.keys()), dtype=float) + patientCharacteristics_['aged'], predictions),
+                "b_hat": [b_hat, beta_hat, X_new @ beta_hat + fixedEffects["intercept"]]}
     Dict = Dict | patientCharacteristics_ 
     return Dict
 
