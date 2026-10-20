@@ -138,10 +138,10 @@ with col1:
             newPatientHBA1c[key] = value
 
     summary = summarise(newPatientCharact, newPatientHBA1c) 
-    Xnew = {key: float(summary[key]) for key in XColumns}
     
-    st.write(summary)
-    st.write(Xnew)
+    st.write(newPatientCharact)
+    
+    Xnew = {key: float(summary[key]) for key in XColumns}
     
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
