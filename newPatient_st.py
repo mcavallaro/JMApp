@@ -138,13 +138,14 @@ with col1:
             newPatientHBA1c[key] = value
 
     summary = summarise(newPatientCharact, newPatientHBA1c) 
-      
+    st.write(summary)
+    
     Xnew = {key: float(summary[key]) for key in XColumns}
     
     newPatientSummary = np.array(list(Xnew.values()), dtype=float).reshape(1, -1)
     x = pd.DataFrame(newPatientSummary, columns=Xnew.keys())
     risk1 = getRisk(x)
-    st.write(summary)
+    
 
 with col2:
     Sex2 = st.selectbox("B) Patient Sex:", ["Male", "Female"])
@@ -250,8 +251,6 @@ with col2:
         value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(np.random.uniform(4,10)), min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
-    st.write(newPatientHBA1c2)
-    st.write(newPatientCharact2)
 
     summary2 = summarise(newPatientCharact2, newPatientHBA1c2) 
     Xnew2 = {key: summary2[key] for key in XColumns}
@@ -269,17 +268,15 @@ prob1 = 100 * (1 - np.exp(-np.cumsum(rate1)))
 rate2 = baseline['hazard'] * risk2
 prob2 = 100 * (1 - np.exp(-np.cumsum(rate2)))
 
+
+# Add plot
 fig, ax = plt.subplots()
 ax_right = ax.twinx()
 
-
-    
 time_from_Dx1 = list(newPatientHBA1c.keys())
 value1 = list(newPatientHBA1c.values())
 time_from_Dx2 = list(newPatientHBA1c2.keys())
 value2 = list(newPatientHBA1c2.values())
-
-
 
 range_ = [min( newPatientCharact['aged'], newPatientCharact2['aged']),
           max(max(baseline['time']) + time_from_Dx1[-1] + newPatientCharact['aged'], max(baseline['time']) + time_from_Dx2[-1] + newPatientCharact2['aged'] )]
@@ -288,11 +285,6 @@ range__ = range_[1] - range_[0]
 xminmax = (np.array([time_from_Dx1[-1] + newPatientCharact['aged']  , time_from_Dx2[-1] + newPatientCharact2['aged']  ])- range_[0]) / range__
 xmin = min(xminmax)
 xmax = max(xminmax)
-#st.write(range_)
-#st.write(range__)
-#st.write(xminmax)
-#st.write(xmax)
-
 
 for y in [20, 40, 60, 80]:
     ax_right.axhline(y=y, xmin=xmin, color="gray", alpha=0.5, lw=1)
@@ -323,16 +315,8 @@ ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
 ax.grid(True, axis='x')
-#ax.grid(False, axis='x')
-#ax_right.grid(False, axis='x')
-
-st.write(summary['coeff'])
-st.write(summary2['coeff'])
-
 
 st.pyplot(fig)
-
-
 
 # Convert figure to PNG in memory
 buf = BytesIO()
@@ -352,18 +336,4 @@ st.download_button(
     file_name="figure.png",
     mime="image/png"
 )
-
-
-
-
-#fig, ax = plt.subplots()
-#ax.plot(baseline['time'], prob1, lw=2, color=colour_A, label='Patient A')
-#ax.plot(baseline['time'], prob2, lw=2, color=colour_B, label='Patient B')
-#ax.set_ylabel('Patient probability of death [%]')
-#ax.set_xlabel('Years from last HbA1c measurement')
-#ax.set_ylim([0,100])
-#ax.legend(loc='lower right')
-#ax.grid(True)
-#st.pyplot(fig)   
-   
    
