@@ -20,7 +20,7 @@ with col2:
 
 
 
-st.text("This app uses demographic data and repeated HbA1c measurements to predict T2D-associated mortality over time. It visualises HbA1c trajectories alongside the predicted cumulative probability of death, enabling comparison between two patient scenarios.")
+st.text("This app uses demographic data and repeated HbA1c measurements to predict T2D-associated mortality over time. It visualises HbA1c trajectories alongside the predicted cumulative probability of death and allows comparison between two patient scenarios.")
 
 col1, col2 = st.columns(2, border=True)
 col1.subheader("Scenario A")
