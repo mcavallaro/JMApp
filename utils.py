@@ -38,7 +38,7 @@ def summarise(patientCharacteristics, HbA1c):
     X_new = np.array([values for key, values in patientCharacteristics_.items() if key in fixedEffects.keys()])
     
     # Compute residual from fixed effects
-    resid = y_new - (X_new @ beta_hat + fixedEffects["intercept"])
+    resid = np.abs(y_new - (X_new @ beta_hat + fixedEffects["intercept"]))
 
     # Compute marginal variance of y_new and random effects
     V = Z_new @ G @ Z_new.T + sigma2 * np.eye(len(y_new))
