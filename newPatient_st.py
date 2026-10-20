@@ -250,10 +250,13 @@ with col2:
         value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(np.random.uniform(4,10)), min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
+    st.write(newPatientHBA1c2)
+    st.write(newPatientCharact2)
 
     summary2 = summarise(newPatientCharact2, newPatientHBA1c2) 
     Xnew2 = {key: summary2[key] for key in XColumns}
-
+    st.write(summary2)
+    
     newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
     x2 = pd.DataFrame(newPatientSummary2, columns=Xnew2.keys())
     risk2 = getRisk(x2)
