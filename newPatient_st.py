@@ -247,7 +247,7 @@ with col2:
     
     for i in range(1, num2):
         key2 = col_time.number_input(f"B) Time {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+        value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(np.random.uniform(4,6)), min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
 
@@ -323,6 +323,8 @@ ax.grid(True, axis='x')
 #ax.grid(False, axis='x')
 #ax_right.grid(False, axis='x')
 
+st.write(summary['coeff'])
+st.write(summary2['coeff'])
 
 
 st.pyplot(fig)
