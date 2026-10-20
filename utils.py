@@ -47,7 +47,7 @@ def summarise(patientCharacteristics, HbA1c):
 
     predictions = (X_new @ beta_hat + fixedEffects["intercept"]) + Z_new @ b_hat
 
-    residuals = resid - Z_new @ b_hat
+    residuals = resid - Z_new @ b_hat # y_new - predictions
     avg_residual = np.mean(np.abs(residuals))
     
     #  from the julia lm code:
