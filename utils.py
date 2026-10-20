@@ -61,7 +61,7 @@ def summarise(patientCharacteristics, HbA1c):
     VinvX = np.linalg.solve(V, X_new)
     Vinvy = np.linalg.solve(V, y_new)
     cov_beta = np.linalg.inv(X_new.T @ VinvX)          # Var(beta_hat)
-    beta = cov_beta @ (X_new.T @ Vinvy)                # BLUE
+    beta_hat = cov_beta @ (X_new.T @ Vinvy)                # BLUE
     b_hat_2 = G @ Z_new.T @ np.linalg.solve(V, y_new - X_new @ beta_hat) # BLUP
       
     
