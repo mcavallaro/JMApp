@@ -19,7 +19,7 @@ def summarise(patientCharacteristics, HbA1c):
     HbA1c_ = {float(k): v for k, v in HbA1c.items()}
     HbA1c_ = dict(sorted(HbA1c_.items()))
     y_new = np.array(list(HbA1c_.values()), dtype=float)
-    Z_new = np.array(list(HbA1c_.keys()), dtype=float) / 10
+    Z_new = np.array(list(HbA1c_.keys()), dtype=float) #/ 10
     
     patientCharacteristics_ =  patientCharacteristics.copy()    
     patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1]
