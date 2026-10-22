@@ -23,14 +23,18 @@ def summarise(patientCharacteristics, HbA1c):
     
     patientCharacteristics_ =  patientCharacteristics.copy()    
     patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1]
-    
+        
     # Add intercept term to X
     I = np.ones(len(Z_new))
     Z_new = np.vstack([I, Z_new]).transpose()
 
-    sortedFixedEffects = {key: fixedEffects[key] for key in patientCharacteristics_.keys() if key in fixedEffects.keys()}
-    
-    
+    sortedFixedEffects = {key: fixedEffects[key] for key in fixedEffects.keys() if key in patientCharacteristics_.keys()}
+    #fixed_effect_characteristics = ["aged", "White", 'Black', 'South_East_Asian', 'Other_Asian', 'Mixed', 'Chinese', 'Other', "male", "tyears"]
+    #sortedFixedEffects = {key: fixedEffects[key] for key in fixed_effect_characteristics if key in fixedEffects.keys()}
+
+    print(sortedFixedEffects)
+    # hba1c_value ~ tyears + male + aged + White + Black + South_East_Asian + Other_Asian + Mixed + Chinese + Other + (tyears|patid2)),
+   
     # beta_hat: array-like, fixed effect coefficients
     beta_hat = np.array(list(sortedFixedEffects.values()))
 
@@ -57,25 +61,27 @@ def summarise(patientCharacteristics, HbA1c):
     
     
     #alternative:
-    V = Z_new @ G @ Z_new.T + sigma2 * np.eye(len(y_new))
-    VinvX = np.linalg.solve(V, X_new)
-    Vinvy = np.linalg.solve(V, y_new)
-    cov_beta = np.linalg.inv(X_new.T @ VinvX)          # Var(beta_hat)
-    beta_hat = cov_beta @ (X_new.T @ Vinvy)                # BLUE
-    b_hat_2 = G @ Z_new.T @ np.linalg.solve(V, y_new - X_new @ beta_hat) # BLUP
-      
+    #V = Z_new @ G @ Z_new.T + sigma2 * np.eye(len(y_new))
+        #Vinvy = np.linalg.solve(V, y_new)
+        #X =np.array(np.repeat(X_new, ))
+        #VinvX = np.linalg.solve(V, X)
+        #cov_beta = np.linalg.inv(X_new.T @ VinvX)          # Var(beta_hat)
+        #beta_hat = cov_beta @ (X_new.T @ Vinvy)                # BLUE
+        #b_hat_2 = G @ Z_new.T @ np.linalg.solve(V, y_new - X_new @ beta_hat) # BLUP
+          
     
     Dict = {"prediction": predictions[len(predictions) - 1], 
                 "residuals_mean": avg_residual,
                 "coeff": coeff,
                 "b_hat": b_hat,
-                "b_hat2" b_hat2,
                 "hba1c_value": y_new[len(y_new) - 1],
                 "predictions": (np.array(list(HbA1c_.keys()), dtype=float) + patientCharacteristics_['aged'], predictions)
                 }
     Dict = Dict | patientCharacteristics_ 
     return Dict
 
+
+ 
 
 def getRisk(X):
     with open('trained_booster_3.pkl', 'rb') as f:

@@ -138,7 +138,7 @@ with col1:
             newPatientHBA1c[key] = value
 
     summary = summarise(newPatientCharact, newPatientHBA1c) 
-    st.write(summary)
+    #st.write(summary)
     
     Xnew = {key: float(summary[key]) for key in XColumns}
     
@@ -235,26 +235,28 @@ with col2:
         
 
     # Initialize session state
-    if "num_inputs" not in st.session_state:
-        st.session_state.num_inputs = 5
-    num2 = st.slider("B) How many HbA1c measurements?", 1, 20, st.session_state.num_inputs)
-    #st.session_state.num_inputs 
+    if "n_input" not in st.session_state:
+        st.session_state.n_input = np.random.randint(1, 8)
+      
+    num2 = st.slider("B) How many HbA1c measurements?", 1, 20, st.session_state.n_input)
+
+    st.session_state.scenarioB = np.random.uniform(4, 10, num2)
+
     newPatientHBA1c2 = {}
 
-    value2 = st.number_input(f"B) Percentage of HbA1c at diagnosis:", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+    value2 = st.number_input(f"B) Percentage of HbA1c at diagnosis:", step=0.1, value=st.session_state.scenarioB[0], min_value=float(4), max_value=float(20))
     newPatientHBA1c2[0] = value2
     
     col_time, col_value = st.columns(2)
     
     for i in range(1, num2):
         key2 = col_time.number_input(f"B) Time {i+1} (years from diagnosis):", step=0.1, value=float(i))
-        value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=float(6), min_value=float(4), max_value=float(20))
+        value2 = col_value.number_input(f"B) &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; HbA1c value {i+1} (%):", step=0.1, value=st.session_state.scenarioB[i], min_value=float(4), max_value=float(20))
         if key2:  # Only add if key is not empty
             newPatientHBA1c2[key2] = value2
 
     summary2 = summarise(newPatientCharact2, newPatientHBA1c2) 
     Xnew2 = {key: summary2[key] for key in XColumns}
-    st.write(summary2)
     
     newPatientSummary2 = np.array(list(Xnew2.values()), dtype=float).reshape(1, -1)
     x2 = pd.DataFrame(newPatientSummary2, columns=Xnew2.keys())
@@ -294,11 +296,11 @@ for y in [4, 6, 8, 10, 12, 14, 16, 18]:
 colour_A = "#1F77B4"
 colour_B = "#E15759"
 
-ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle='--', marker="o", lw=1, ms=3, color=colour_A,  label="HbA1c trajectory (Scenario A)")
-ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle='--', marker="o", lw=1, ms=3, color=colour_B, label="HbA1c trajectory (Scenario B)")
+ax.plot(np.array(time_from_Dx1) + newPatientCharact['aged'], value1, linestyle=':', marker="o", lw=1, ms=3, color=colour_A,  label="HbA1c trajectory (Scenario A)")
+ax.plot(np.array(time_from_Dx2) + newPatientCharact2['aged'], value2, linestyle=':', marker="o", lw=1, ms=3, color=colour_B, label="HbA1c trajectory (Scenario B)")
 
-ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=2, color=colour_A, alpha=0.7, label="Linear trend (Scenario A)")
-ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=2, color=colour_B, alpha=0.7, label="Linear trend (Scenario B)")
+ax.plot(summary['predictions'][0], summary['predictions'][1], linestyle='-', lw=2, color=colour_A, alpha=0.7, label="Expected trend (Scenario A)")
+ax.plot(summary2['predictions'][0], summary2['predictions'][1], linestyle='-', lw=2, color=colour_B, alpha=0.7, label="Expected trend (Scenario B)")
 
 #
 ax.axvline(time_from_Dx1[-1] + newPatientCharact['aged'], linestyle='--', alpha=0.5, color=colour_A)
