@@ -317,6 +317,8 @@ ax.legend(loc='upper left')
 ax_right.legend(loc='lower right')
 
 ax.grid(True, axis='x')
+ax_right.grid(False, axis='y')
+ax_right.grid(True, axis='y')
 
 st.pyplot(fig)
 
