@@ -313,12 +313,11 @@ ax.set_xlabel('Age')
 ax.set_ylabel('HbA1c [%]')
 ax_right.set_ylim([0,100])
 ax.set_ylim([3.8, 20])
-ax.legend(loc='upper left')
-ax_right.legend(loc='lower right')
 
 ax.grid(True, axis='x')
-ax_right.grid(False, axis='y')
-ax_right.grid(True, axis='y')
+
+ax.legend(loc='upper left', fontsize=7.5)
+ax_right.legend(loc='lower right')
 
 st.pyplot(fig)
 

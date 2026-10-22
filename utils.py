@@ -32,7 +32,7 @@ def summarise(patientCharacteristics, HbA1c):
     #fixed_effect_characteristics = ["aged", "White", 'Black', 'South_East_Asian', 'Other_Asian', 'Mixed', 'Chinese', 'Other', "male", "tyears"]
     #sortedFixedEffects = {key: fixedEffects[key] for key in fixed_effect_characteristics if key in fixedEffects.keys()}
 
-    print(sortedFixedEffects)
+
     # hba1c_value ~ tyears + male + aged + White + Black + South_East_Asian + Other_Asian + Mixed + Chinese + Other + (tyears|patid2)),
    
     # beta_hat: array-like, fixed effect coefficients
