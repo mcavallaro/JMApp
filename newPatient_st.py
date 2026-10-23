@@ -240,8 +240,13 @@ with col2:
       
     num2 = st.slider("B) How many HbA1c measurements?", 1, 20, st.session_state.n_input)
 
-    if "n_input" not in st.session_state:
+    if "scenarioB" not in st.session_state:
        st.session_state.scenarioB = np.random.uniform(4, 10, num2)
+
+    if num2 > len(st.session_state.scenarioB):
+       tmp = st.session_state.scenarioB
+       st.session_state.scenarioB = np.random.uniform(4, 10, num2)
+       st.session_state.scenarioB[:len(tmp)] = tmp
 
     newPatientHBA1c2 = {}
 
