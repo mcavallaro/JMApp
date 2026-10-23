@@ -22,7 +22,7 @@ def summarise(patientCharacteristics, HbA1c):
     Z_new = np.array(list(HbA1c_.keys()), dtype=float)
     
     patientCharacteristics_ =  patientCharacteristics.copy()    
-    patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1]
+    patientCharacteristics_['tyears'] = Z_new[len(Z_new) - 1] / 10
         
     # Add intercept term to X
     I = np.ones(len(Z_new))
@@ -31,7 +31,6 @@ def summarise(patientCharacteristics, HbA1c):
     sortedFixedEffects = {key: fixedEffects[key] for key in fixedEffects.keys() if key in patientCharacteristics_.keys()}
     #fixed_effect_characteristics = ["aged", "White", 'Black', 'South_East_Asian', 'Other_Asian', 'Mixed', 'Chinese', 'Other', "male", "tyears"]
     #sortedFixedEffects = {key: fixedEffects[key] for key in fixed_effect_characteristics if key in fixedEffects.keys()}
-
 
     # hba1c_value ~ tyears + male + aged + White + Black + South_East_Asian + Other_Asian + Mixed + Chinese + Other + (tyears|patid2)),
    
